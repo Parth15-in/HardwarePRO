@@ -1,0 +1,49 @@
+appId: com.hardwareshop.app
+productName: HardwareShopPro
+directories:
+  output: dist
+  buildResources: build
+files:
+  - "**/*"
+  - "!src/**/*"
+  - "!.next/cache/**/*"
+  - "out/**/*"
+  # FIX #10: Exclude devDependencies from the production bundle.
+  # These were previously included via "**/*", inflating the installer by 200-400 MB.
+  # None of the packages below are needed at runtime in the packaged Electron app.
+  - "!node_modules/typescript/**/*"
+  - "!node_modules/eslint/**/*"
+  - "!node_modules/eslint-*/**/*"
+  - "!node_modules/@eslint/**/*"
+  - "!node_modules/tailwindcss/**/*"
+  - "!node_modules/@tailwindcss/**/*"
+  - "!node_modules/postcss/**/*"
+  - "!node_modules/autoprefixer/**/*"
+  - "!node_modules/next/**/*"
+  - "!node_modules/tsx/**/*"
+  - "!node_modules/wait-on/**/*"
+  - "!node_modules/concurrently/**/*"
+  - "!node_modules/electron-builder/**/*"
+  - "!node_modules/@types/**/*"
+  - "!node_modules/prisma/build/**/*"
+  - "!node_modules/.cache/**/*"
+  - "!**/*.map"
+  - "!**/*.d.ts"
+  - "!**/*.md"
+  - "!**/__tests__/**/*"
+  - "!**/*.test.*"
+  - "!**/*.spec.*"
+asar: true
+asarUnpack:
+  - "**/*.node"
+  - "**/node_modules/{@prisma,prisma}/**/*"
+win:
+  target: nsis
+  icon: build/icon.ico
+nsis:
+  oneClick: false
+  allowToChangeInstallationDirectory: true
+publish:
+  provider: github
+  owner: Rdhobe
+  repo: indiamornings
